@@ -7,7 +7,7 @@ describe('InMemoryExpenseGroupRepository', () => {
 
 			const result = await subject.findAll();
 
-			expect(result.length).toBe(3);
+			expect(result).toHaveLength(3);
 		});
 	});
 });
