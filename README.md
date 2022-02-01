@@ -1,4 +1,4 @@
-# 💿🚀 Remix + turborepo
+# 💿🚀 Remix + turborepo [![Deploy](https://github.com/SantiMA10/remix-turborepo/actions/workflows/deploy.yml/badge.svg)](https://github.com/SantiMA10/remix-turborepo/actions/workflows/deploy.yml)
 
 This is a [remix](https://remix.run/) project bootstrapped with `create-remix`. This project is a monorepo managed with [turborepo](https://turborepo.org/). 
 
