@@ -8,7 +8,7 @@ This is a [remix](https://remix.run/) project bootstrapped with `create-remix`. 
 - `apps/expenses-app` contains the remix project.
 - `packages` contains different packages with each of the architecture layers
   - `packages/expenses-app-domain` contains the business entities and rules
-  - `packages/data` contains the implementations for accessing "real" data
+  - `packages/expenses-app-data` contains the implementations for accessing "real" data
   
 # Getting Started
 
