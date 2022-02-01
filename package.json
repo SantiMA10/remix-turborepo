@@ -1,0 +1,30 @@
+{
+  "name": "remix-turborepo",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "build": "turbo run build",
+    "start:dev": "turbo run dev",
+    "start:prod": "turbo run start"
+  },
+  "devDependencies": {
+    "turbo": "^1.1.2"
+  },
+  "packageManager": "yarn@1.22.5",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SantiMA10/remix-turborepo.git"
+  },
+  "author": "Santiago Martin Agra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SantiMA10/remix-turborepo/issues"
+  },
+  "homepage": "https://github.com/SantiMA10/remix-turborepo#readme"
+}

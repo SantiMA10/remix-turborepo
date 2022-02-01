@@ -1,0 +1,29 @@
+{
+  "baseBranch": "origin/main",
+  "pipeline": {
+    "expenses-app#build": {
+      "dependsOn": ["^build"],
+      "outputs": [".cache/**", "build/**", "public/build/**"]
+    },
+    "entities#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "use-cases#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "build": {
+      "dependsOn": ["^build"]
+    },
+    "lint": {},
+    "test": {},
+    "dev": {
+      "cache": false
+    },
+    "start": {
+      "dependsOn": ["build"],
+      "cache": false
+    }
+  }
+}
