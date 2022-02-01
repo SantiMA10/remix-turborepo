@@ -1,6 +1,6 @@
 {
 	"private": true,
-	"name": "entities",
+	"name": "expenses-app-data",
 	"version": "1.0.0",
 	"description": "",
 	"main": "dist/src/index.js",
@@ -26,6 +26,9 @@
 		"url": "https://github.com/SantiMA10/remix-turborepo/issues"
 	},
 	"homepage": "https://github.com/SantiMA10/remix-turborepo#readme",
+	"dependencies": {
+		"expenses-app-domain": "*"
+	},
 	"devDependencies": {
 		"@santima10/eslint-config": "^2.2.0",
 		"@swc/core": "^1.2.135",

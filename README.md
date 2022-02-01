@@ -7,8 +7,7 @@ This is a [remix](https://remix.run/) project bootstrapped with `create-remix`. 
 - `.github/workflows` contains the configuration to lint, test and build the repo on each merge with the main branch using GitHub Actions.
 - `apps/expenses-app` contains the remix project.
 - `packages` contains different packages with each of the architecture layers
-  - `packages/entities` contains all the entities of application
-  - `packages/use-cases` contains the application business rules
+  - `packages/expenses-app-domain` contains the business entities and rules
   - `packages/data` contains the implementations for accessing "real" data
   
 # Getting Started
