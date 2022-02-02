@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
-          cache: "yarn"
+          cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - run: yarn lint
 
@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
-          cache: "yarn"
+          cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - run: yarn test
 
@@ -44,7 +44,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
-          cache: "yarn"
+          cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - run: yarn build
 
@@ -56,11 +56,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: amondnet/vercel-action@v20
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: "--prod"
-          github-comment: false
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}

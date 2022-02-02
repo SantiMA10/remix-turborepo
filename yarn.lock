@@ -576,7 +576,7 @@
     ws "^7.4.5"
     xdm "^2.0.0"
 
-"@remix-run/express@1.1.3":
+"@remix-run/express@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@remix-run/express/-/express-1.1.3.tgz#58337bb64fdf341e46d6b8da0a689f240c31ee33"
   integrity sha512-lNwnxWNSHGVzeSAtEx0KIOjznOcOPD9cmLZYiCWYdY1Wl+PVRxEsYW5O2XMBg4E3kDR9Tfh4S6H9/5EZkY0sFg==
@@ -608,16 +608,6 @@
   dependencies:
     react-router-dom "^6.2.1"
 
-"@remix-run/serve@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@remix-run/serve/-/serve-1.1.3.tgz#5a3305016756144005a72afc4d27cb1893b4876a"
-  integrity sha512-fPvVzMXhOnGmKarhdhSxI0iXXfB3g1Fh3+IpV5IT0WpRyU+3dQ8y9wPZXbdUJhDAFIXz8V+Qn8yVIYOFAlEqaQ==
-  dependencies:
-    "@remix-run/express" "1.1.3"
-    compression "^1.7.4"
-    express "^4.17.1"
-    morgan "^1.10.0"
-
 "@remix-run/server-runtime@1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-1.1.3.tgz#06c487a39e812627009e64a006f810393a3e4c90"
@@ -629,14 +619,6 @@
     react-router-dom "^6.2.1"
     set-cookie-parser "^2.4.8"
     source-map "^0.7.3"
-
-"@remix-run/vercel@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@remix-run/vercel/-/vercel-1.1.3.tgz#77f03caa4dff5323691ea0954961fdcd26775cb6"
-  integrity sha512-nOtO0FjneLwINrLqow3fwLibb97gpwkK0QgxPtabm3qzJ/JRsEwt/7IDNBicA8u8GnNyr9476yedYlT90nT5/Q==
-  dependencies:
-    "@remix-run/node" "1.1.3"
-    "@remix-run/server-runtime" "1.1.3"
 
 "@rollup/pluginutils@^4.0.0":
   version "4.1.2"
@@ -1774,7 +1756,14 @@ cookie@0.4.1, cookie@^0.4.1:
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.1.tgz#afd713fe26ebd21ba95ceb61f9a8116e50a537d1"
   integrity sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA==
 
-cross-spawn@^7.0.2, cross-spawn@^7.0.3:
+cross-env@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
+  integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
+  dependencies:
+    cross-spawn "^7.0.1"
+
+cross-spawn@^7.0.1, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
   integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==

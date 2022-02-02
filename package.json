@@ -11,7 +11,8 @@
 		"test": "turbo run test",
 		"build": "turbo run build",
 		"start:dev": "turbo run dev",
-		"start:prod": "turbo run start"
+		"start:prod": "turbo run start",
+		"start": "yarn start:prod"
 	},
 	"devDependencies": {
 		"turbo": "^1.1.2",
