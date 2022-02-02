@@ -1,11 +1,22 @@
-import { ExpenseGroup } from 'expenses-app-domain';
+import { InMemoryExpenseGroupRepository } from 'expenses-app-data';
+import { ExpenseGroup, GetExpenseGroupUseCase } from 'expenses-app-domain';
 import { LoaderFunction, useLoaderData } from 'remix';
 import invariant from 'tiny-invariant';
 
 export const loader: LoaderFunction = async ({ params }): Promise<ExpenseGroup> => {
 	invariant(params.id, 'expected params.id');
 
-	return { id: params.id, expenses: [], name: '', users: [] };
+	const { data, error } = await new GetExpenseGroupUseCase(
+		new InMemoryExpenseGroupRepository(),
+	).perform({ id: params.id });
+
+	if (error) {
+		throw new Error(`[${error.type}] ${error.message}`);
+	}
+
+	invariant(data, 'expected data');
+
+	return data;
 };
 
 export default function Index() {
