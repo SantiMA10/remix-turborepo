@@ -10,7 +10,7 @@
 		"dist/src/index.d.ts"
 	],
 	"scripts": {
-		"lint": "eslint . --ext .ts",
+		"lint": "eslint . --ext .ts,.js --ignore-path ../../.gitignore .",
 		"build": "npx tsc",
 		"dev": "npx tsc --watch",
 		"test": "jest",

@@ -1,0 +1,19 @@
+{
+	"extends": ["plugin:react/recommended", "@santima10/eslint-config"],
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"rules": {
+		"react/react-in-jsx-scope": "off"
+	},
+	"globals": {
+		"React": "writable"
+	}
+}
