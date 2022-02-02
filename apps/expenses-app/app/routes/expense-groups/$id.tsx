@@ -1,6 +1,6 @@
 import { InMemoryExpenseGroupRepository } from 'expenses-app-data';
 import { ExpenseGroup, GetExpenseGroupUseCase } from 'expenses-app-domain';
-import { LoaderFunction, useLoaderData } from 'remix';
+import { LoaderFunction, MetaFunction, useLoaderData } from 'remix';
 import invariant from 'tiny-invariant';
 
 export const loader: LoaderFunction = async ({ params }): Promise<ExpenseGroup> => {
@@ -17,6 +17,10 @@ export const loader: LoaderFunction = async ({ params }): Promise<ExpenseGroup> 
 	invariant(data, 'expected data');
 
 	return data;
+};
+
+export const meta: MetaFunction = ({ data }) => {
+	return { title: `${data.name} | Balbal cash` };
 };
 
 export default function Index() {
