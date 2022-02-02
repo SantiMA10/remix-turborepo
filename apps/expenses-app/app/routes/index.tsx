@@ -1,7 +1,9 @@
 import { InMemoryExpenseGroupRepository } from 'expenses-app-data';
 import { ExpenseGroup, GetAllExpenseGroupsUseCase } from 'expenses-app-domain';
-import { Link, useLoaderData } from 'remix';
+import { useLoaderData } from 'remix';
 import invariant from 'tiny-invariant';
+
+import { ExpenseGroupCard } from '../components/ExpenseGroupCard';
 
 export async function loader(): Promise<ExpenseGroup[]> {
 	const { data, error } = await new GetAllExpenseGroupsUseCase(
@@ -26,7 +28,7 @@ export default function Index() {
 				{expenseGroups.map((expenseGroup) => {
 					return (
 						<li key={expenseGroup.id}>
-							<Link to={`/expense-groups/${expenseGroup.id}`}>{expenseGroup.name}</Link>
+							<ExpenseGroupCard expenseGroup={expenseGroup} />
 						</li>
 					);
 				})}
