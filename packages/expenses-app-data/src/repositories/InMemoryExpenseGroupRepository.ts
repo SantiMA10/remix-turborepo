@@ -7,7 +7,11 @@ const expenseGroups: ExpenseGroup[] = [
 ];
 
 export class InMemoryExpenseGroupRepository implements ExpenseGroupRepository {
-	public async findAll(): Promise<ExpenseGroup[]> {
+	public findById: ExpenseGroupRepository['findById'] = (id) => {
+		return Promise.resolve(expenseGroups.find((expenseGroup) => expenseGroup.id === id));
+	};
+
+	public findAll: ExpenseGroupRepository['findAll'] = async () => {
 		return expenseGroups;
-	}
+	};
 }
