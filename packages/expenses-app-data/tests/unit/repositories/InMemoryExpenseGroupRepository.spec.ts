@@ -17,7 +17,23 @@ describe('InMemoryExpenseGroupRepository', () => {
 
 			const result = await subject.findById('1');
 
-			expect(result).toMatchObject({ id: '1', name: 'Group 1', expenses: [], users: [] });
+			expect(result).toMatchObject({
+				id: '1',
+				name: 'Group 1',
+				expenses: [
+					{
+						id: '1',
+						date: expect.any(Date),
+						amount: 9.99,
+						description: '💿 Music Remix',
+						user: { id: '1', name: 'Marisol' },
+					},
+				],
+				users: [
+					{ id: '1', name: 'Marisol' },
+					{ id: '2', name: 'Juan' },
+				],
+			});
 		});
 
 		it('returns the undefined if the expense group does not exists', async () => {
