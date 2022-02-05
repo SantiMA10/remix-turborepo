@@ -1,6 +1,7 @@
 import { GetExpenseGroupUseCase } from '../../../src';
 import { ErrorType } from '../../../src/utils/ErrorType';
 import { ExpenseGroupBuilder } from '../../builders/ExpenseGroupBuilder';
+import { UserBuilder } from '../../builders/UserBuilder';
 import { MockExpenseGroupRepository } from '../../mocks/MockExpenseGroupRepository';
 
 describe('GetExpenseGroupUseCase', () => {
@@ -49,6 +50,22 @@ describe('GetExpenseGroupUseCase', () => {
 
 		expect(result).toMatchObject({
 			data: expenseGroup,
+		});
+	});
+
+	it('returns the data from the ExpenseGroupRepository with the balance in each user', async () => {
+		const user = UserBuilder.build();
+		const expenseGroup = ExpenseGroupBuilder.build({ users: [user] });
+		const expenseGroupRepository = new MockExpenseGroupRepository();
+		jest
+			.spyOn(expenseGroupRepository, 'findById')
+			.mockImplementation(() => Promise.resolve(expenseGroup));
+		const subject = new GetExpenseGroupUseCase(expenseGroupRepository);
+
+		const result = await subject.perform({ id: expenseGroup.id });
+
+		expect(result).toMatchObject({
+			data: { ...expenseGroup, users: [{ ...user, balance: 0 }] },
 		});
 	});
 });

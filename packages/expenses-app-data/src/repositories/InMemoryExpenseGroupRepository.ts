@@ -1,7 +1,20 @@
 import { ExpenseGroup, ExpenseGroupRepository } from 'expenses-app-domain';
 
 const expenseGroups: ExpenseGroup[] = [
-	{ id: '1', name: 'Group 1', expenses: [], users: [] },
+	{
+		id: '1',
+		name: 'Group 1',
+		expenses: [
+			{
+				id: '1',
+				date: new Date(),
+				amount: 9.99,
+				description: '💿 Music Remix',
+				user: { id: '1', name: 'Marisol' },
+			},
+		],
+		users: [{ id: '1', name: 'Marisol' }],
+	},
 	{ id: '2', name: 'Group 2', expenses: [], users: [] },
 	{ id: '3', name: 'Group 3', expenses: [], users: [] },
 ];

@@ -1,4 +1,4 @@
-import { ExpenseGroup, ExpenseGroupRepository } from '..';
+import { calculateExpenseGroupBalance, ExpenseGroup, ExpenseGroupRepository } from '..';
 import { ErrorType } from '../utils/ErrorType';
 import { BaseUseCase } from '.';
 
@@ -21,7 +21,7 @@ export class GetExpenseGroupUseCase implements UseCase {
 			}
 
 			return {
-				data: expenseGroup,
+				data: calculateExpenseGroupBalance(expenseGroup),
 			};
 		} catch (e) {
 			if (e instanceof Error) {

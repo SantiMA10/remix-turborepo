@@ -1,4 +1,4 @@
-import { ExpenseGroup } from '../entities/ExpenseGroup';
+import { calculateExpenseGroupBalance, ExpenseGroup } from '../entities/ExpenseGroup';
 import { ExpenseGroupRepository } from '../repositories/ExpenseGroupRepository';
 import { ErrorType } from '../utils/ErrorType';
 import { BaseUseCase } from './BaseUseCase';
@@ -10,8 +10,10 @@ export class GetAllExpenseGroupsUseCase implements BaseUseCase {
 
 	public perform: UseCase['perform'] = async () => {
 		try {
+			const expenseGroups = await this.expenseGroupRepository.findAll();
+
 			return {
-				data: await this.expenseGroupRepository.findAll(),
+				data: expenseGroups.map((expenseGroup) => calculateExpenseGroupBalance(expenseGroup)),
 			};
 		} catch (e) {
 			if (e instanceof Error) {
