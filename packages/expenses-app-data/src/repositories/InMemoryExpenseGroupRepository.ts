@@ -13,7 +13,10 @@ const expenseGroups: ExpenseGroup[] = [
 				user: { id: '1', name: 'Marisol' },
 			},
 		],
-		users: [{ id: '1', name: 'Marisol' }],
+		users: [
+			{ id: '1', name: 'Marisol' },
+			{ id: '2', name: 'Juan' },
+		],
 	},
 	{ id: '2', name: 'Group 2', expenses: [], users: [] },
 	{ id: '3', name: 'Group 3', expenses: [], users: [] },

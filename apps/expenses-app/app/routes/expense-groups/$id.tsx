@@ -3,6 +3,9 @@ import { ExpenseGroup, GetExpenseGroupUseCase } from 'expenses-app-domain';
 import { LoaderFunction, MetaFunction, useLoaderData } from 'remix';
 import invariant from 'tiny-invariant';
 
+import { BalanceList } from '../../components/BalanceList';
+import { ExpenseList } from '../../components/ExpenseList';
+
 export const loader: LoaderFunction = async ({ params }): Promise<ExpenseGroup> => {
 	invariant(params.id, 'expected params.id');
 
@@ -27,8 +30,11 @@ export default function Index() {
 	const expenseGroup = useLoaderData<ExpenseGroup>();
 
 	return (
-		<div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
-			{JSON.stringify(expenseGroup)}
+		<div>
+			<h1>{expenseGroup.name}</h1>
+
+			<ExpenseList expenses={expenseGroup.expenses} />
+			<BalanceList users={expenseGroup.users} />
 		</div>
 	);
 }
