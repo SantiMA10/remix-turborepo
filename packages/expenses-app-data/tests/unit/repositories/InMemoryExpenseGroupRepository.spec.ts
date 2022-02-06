@@ -12,7 +12,7 @@ describe('InMemoryExpenseGroupRepository', () => {
 	});
 
 	describe('#findById', () => {
-		it('returns the ExpenseGroup from in memory list', async () => {
+		it('returns the ExpenseGroup from in memory list with the expenses ordered by date', async () => {
 			const subject = new InMemoryExpenseGroupRepository();
 
 			const result = await subject.findById('1');
@@ -21,6 +21,16 @@ describe('InMemoryExpenseGroupRepository', () => {
 				id: '1',
 				name: 'Group 1',
 				expenses: [
+					{
+						id: '2',
+						amount: 9,
+						date: expect.any(Date),
+						description: '☕️ Coffee',
+						user: {
+							id: '2',
+							name: 'Juan',
+						},
+					},
 					{
 						id: '1',
 						date: expect.any(Date),

@@ -1,5 +1,6 @@
 import { ExpenseGroup, ExpenseGroupRepository } from 'expenses-app-domain';
-import { merge } from 'lodash';
+import { merge, orderBy } from 'lodash';
+import { DateTime } from 'luxon';
 
 const expenseGroups: ExpenseGroup[] = [
 	{
@@ -8,10 +9,17 @@ const expenseGroups: ExpenseGroup[] = [
 		expenses: [
 			{
 				id: '1',
-				date: new Date(),
+				date: DateTime.now().minus({ days: 1 }).toJSDate(),
 				amount: 9,
 				description: '💿 Music Remix',
 				user: { id: '1', name: 'Marisol' },
+			},
+			{
+				id: '2',
+				date: new Date(),
+				amount: 9,
+				description: '☕️ Coffee',
+				user: { id: '2', name: 'Juan' },
 			},
 		],
 		users: [
@@ -23,8 +31,14 @@ const expenseGroups: ExpenseGroup[] = [
 ];
 
 export class InMemoryExpenseGroupRepository implements ExpenseGroupRepository {
-	public findById: ExpenseGroupRepository['findById'] = (id) => {
-		return Promise.resolve(expenseGroups.find((expenseGroup) => expenseGroup.id === id));
+	public findById: ExpenseGroupRepository['findById'] = async (id) => {
+		const expenseGroup = expenseGroups.find((expenseGroup) => expenseGroup.id === id);
+
+		if (!expenseGroup) {
+			return undefined;
+		}
+
+		return { ...expenseGroup, expenses: orderBy(expenseGroup.expenses, 'date', 'desc') };
 	};
 
 	public findAll: ExpenseGroupRepository['findAll'] = async () => {
