@@ -1,6 +1,4 @@
-import { ErrorType } from './ErrorType';
-
 export interface DomainError {
-	type: ErrorType;
+	type: 'UnableToGetData' | 'EntityNotFound' | 'BadInputData';
 	message: string;
 }

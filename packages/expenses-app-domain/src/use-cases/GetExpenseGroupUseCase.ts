@@ -1,5 +1,4 @@
 import { calculateExpenseGroupBalance, ExpenseGroup, ExpenseGroupRepository } from '..';
-import { ErrorType } from '../utils/ErrorType';
 import { BaseUseCase } from '.';
 
 type UseCase = BaseUseCase<{ id: ExpenseGroup['id'] }, ExpenseGroup>;
@@ -14,7 +13,7 @@ export class GetExpenseGroupUseCase implements UseCase {
 			if (!expenseGroup) {
 				return {
 					error: {
-						type: ErrorType.EntityNotFound,
+						type: 'EntityNotFound',
 						message: `ExpenseGroup (${id}) not found`,
 					},
 				};
@@ -27,7 +26,7 @@ export class GetExpenseGroupUseCase implements UseCase {
 			if (e instanceof Error) {
 				return {
 					error: {
-						type: ErrorType.UnableToGetData,
+						type: 'UnableToGetData',
 						message: e.message,
 					},
 				};
@@ -35,7 +34,7 @@ export class GetExpenseGroupUseCase implements UseCase {
 
 			return {
 				error: {
-					type: ErrorType.UnableToGetData,
+					type: 'UnableToGetData',
 					message: 'Unknown error',
 				},
 			};

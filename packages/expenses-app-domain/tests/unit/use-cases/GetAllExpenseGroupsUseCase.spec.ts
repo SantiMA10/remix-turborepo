@@ -1,5 +1,4 @@
 import { GetAllExpenseGroupsUseCase } from '../../../src/use-cases/GetAllExpenseGroupsUseCase';
-import { ErrorType } from '../../../src/utils/ErrorType';
 import { ExpenseGroupBuilder } from '../../builders/ExpenseGroupBuilder';
 import { UserBuilder } from '../../builders/UserBuilder';
 import { MockExpenseGroupRepository } from '../../mocks/MockExpenseGroupRepository';
@@ -16,7 +15,7 @@ describe('GetAllExpenseGroupsUseCase', () => {
 			const result = await subject.perform();
 
 			expect(result).toMatchObject({
-				error: { type: ErrorType.UnableToGetData, message: 'error' },
+				error: { type: 'UnableToGetData', message: 'error' },
 			});
 		});
 

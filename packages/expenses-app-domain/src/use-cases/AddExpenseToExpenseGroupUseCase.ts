@@ -1,7 +1,6 @@
 import { randomUUID } from 'crypto';
 
 import { Expense, ExpenseGroup, ExpenseGroupRepository, User } from '..';
-import { ErrorType } from '../utils/ErrorType';
 import { BaseUseCase } from '.';
 
 type UseCase = BaseUseCase<{
@@ -18,7 +17,7 @@ export class AddExpenseToExpenseGroupUseCase implements UseCase {
 		if (!expenseGroup) {
 			return {
 				error: {
-					type: ErrorType.EntityNotFound,
+					type: 'EntityNotFound',
 					message: `ExpenseGroup (${expenseGroupId}) not found`,
 				},
 			};
@@ -36,7 +35,7 @@ export class AddExpenseToExpenseGroupUseCase implements UseCase {
 		if (!user) {
 			return {
 				error: {
-					type: ErrorType.BadInputData,
+					type: 'BadInputData',
 					message: 'Unable to add the expense from a user not in the expense group',
 				},
 			};

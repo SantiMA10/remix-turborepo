@@ -1,6 +1,5 @@
 import { calculateExpenseGroupBalance, ExpenseGroup } from '../entities/ExpenseGroup';
 import { ExpenseGroupRepository } from '../repositories/ExpenseGroupRepository';
-import { ErrorType } from '../utils/ErrorType';
 import { BaseUseCase } from './BaseUseCase';
 
 type UseCase = BaseUseCase<void, ExpenseGroup[]>;
@@ -19,7 +18,7 @@ export class GetAllExpenseGroupsUseCase implements BaseUseCase {
 			if (e instanceof Error) {
 				return {
 					error: {
-						type: ErrorType.UnableToGetData,
+						type: 'UnableToGetData',
 						message: e.message,
 					},
 				};
@@ -27,7 +26,7 @@ export class GetAllExpenseGroupsUseCase implements BaseUseCase {
 
 			return {
 				error: {
-					type: ErrorType.UnableToGetData,
+					type: 'UnableToGetData',
 					message: 'Unknown error',
 				},
 			};

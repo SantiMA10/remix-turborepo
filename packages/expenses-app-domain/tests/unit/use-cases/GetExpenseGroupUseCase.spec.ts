@@ -1,5 +1,4 @@
 import { GetExpenseGroupUseCase } from '../../../src';
-import { ErrorType } from '../../../src/utils/ErrorType';
 import { ExpenseGroupBuilder } from '../../builders/ExpenseGroupBuilder';
 import { UserBuilder } from '../../builders/UserBuilder';
 import { MockExpenseGroupRepository } from '../../mocks/MockExpenseGroupRepository';
@@ -17,7 +16,7 @@ describe('GetExpenseGroupUseCase', () => {
 			const result = await subject.perform({ id: expenseGroup.id });
 
 			expect(result).toMatchObject({
-				error: { type: ErrorType.UnableToGetData, message: 'error' },
+				error: { type: 'UnableToGetData', message: 'error' },
 			});
 		});
 
@@ -33,7 +32,7 @@ describe('GetExpenseGroupUseCase', () => {
 
 			expect(result).toMatchObject({
 				error: {
-					type: ErrorType.EntityNotFound,
+					type: 'EntityNotFound',
 					message: `ExpenseGroup (${expenseGroup.id}) not found`,
 				},
 			});

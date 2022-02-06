@@ -1,5 +1,4 @@
 import { AddUserToExpenseGroupUseCase } from '../../../src';
-import { ErrorType } from '../../../src/utils/ErrorType';
 import { ExpenseGroupBuilder } from '../../builders/ExpenseGroupBuilder';
 import { UserBuilder } from '../../builders/UserBuilder';
 import { MockExpenseGroupRepository } from '../../mocks/MockExpenseGroupRepository';
@@ -14,7 +13,7 @@ describe('AddUserToExpenseGroupUseCase', () => {
 			const result = await subject.perform({ expenseGroupId: 'id', user: { name: 'name' } });
 
 			expect(result).toMatchObject({
-				error: { type: ErrorType.EntityNotFound, message: 'ExpenseGroup (id) not found' },
+				error: { type: 'EntityNotFound', message: 'ExpenseGroup (id) not found' },
 			});
 		});
 

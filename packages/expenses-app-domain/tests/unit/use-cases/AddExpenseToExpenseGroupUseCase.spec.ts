@@ -1,5 +1,4 @@
 import { AddExpenseToExpenseGroupUseCase } from '../../../src';
-import { ErrorType } from '../../../src/utils/ErrorType';
 import { ExpenseBuilder } from '../../builders/ExpenseBuilder';
 import { ExpenseGroupBuilder } from '../../builders/ExpenseGroupBuilder';
 import { UserBuilder } from '../../builders/UserBuilder';
@@ -18,7 +17,7 @@ describe('AddExpenseToExpenseGroupUseCase', () => {
 			});
 
 			expect(result).toMatchObject({
-				error: { type: ErrorType.EntityNotFound, message: 'ExpenseGroup (id) not found' },
+				error: { type: 'EntityNotFound', message: 'ExpenseGroup (id) not found' },
 			});
 		});
 
@@ -61,7 +60,7 @@ describe('AddExpenseToExpenseGroupUseCase', () => {
 
 			expect(result).toMatchObject({
 				error: {
-					type: ErrorType.BadInputData,
+					type: 'BadInputData',
 					message: 'Unable to add the expense from a user not in the expense group',
 				},
 			});
