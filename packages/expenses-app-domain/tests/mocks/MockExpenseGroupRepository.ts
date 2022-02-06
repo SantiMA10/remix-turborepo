@@ -8,4 +8,8 @@ export class MockExpenseGroupRepository implements ExpenseGroupRepository {
 	public findById: ExpenseGroupRepository['findById'] = () => {
 		throw new Error('Method not implemented.');
 	};
+
+	public update: ExpenseGroupRepository['update'] = () => {
+		throw new Error('Method not implemented.');
+	};
 }
