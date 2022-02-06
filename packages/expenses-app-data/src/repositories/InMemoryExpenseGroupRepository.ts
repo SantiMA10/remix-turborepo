@@ -9,7 +9,7 @@ const expenseGroups: ExpenseGroup[] = [
 			{
 				id: '1',
 				date: new Date(),
-				amount: 9.99,
+				amount: 9,
 				description: '💿 Music Remix',
 				user: { id: '1', name: 'Marisol' },
 			},
@@ -20,7 +20,6 @@ const expenseGroups: ExpenseGroup[] = [
 		],
 	},
 	{ id: '2', name: 'Group 2', expenses: [], users: [] },
-	{ id: '3', name: 'Group 3', expenses: [], users: [] },
 ];
 
 export class InMemoryExpenseGroupRepository implements ExpenseGroupRepository {

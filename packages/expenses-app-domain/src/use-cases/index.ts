@@ -1,3 +1,4 @@
+export * from './AddExpenseToExpenseGroupUseCase';
 export * from './AddUserToExpenseGroupUseCase';
 export * from './BaseUseCase';
 export * from './GetAllExpenseGroupsUseCase';

@@ -7,7 +7,7 @@ describe('InMemoryExpenseGroupRepository', () => {
 
 			const result = await subject.findAll();
 
-			expect(result).toHaveLength(3);
+			expect(result).toHaveLength(2);
 		});
 	});
 
@@ -24,7 +24,7 @@ describe('InMemoryExpenseGroupRepository', () => {
 					{
 						id: '1',
 						date: expect.any(Date),
-						amount: 9.99,
+						amount: 9,
 						description: '💿 Music Remix',
 						user: { id: '1', name: 'Marisol' },
 					},

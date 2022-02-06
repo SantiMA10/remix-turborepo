@@ -1,6 +1,8 @@
 import { InMemoryExpenseGroupRepository } from 'expenses-app-data';
 import {
+	AddExpenseToExpenseGroupUseCase,
 	AddUserToExpenseGroupUseCase,
+	Expense,
 	ExpenseGroup,
 	GetAllExpenseGroupsUseCase,
 	GetExpenseGroupUseCase,
@@ -22,4 +24,11 @@ export const addUserToExpenseGroup = async (options: {
 	name: User['name'];
 }) => {
 	return new AddUserToExpenseGroupUseCase(repository).perform(options);
+};
+
+export const addExpenseToExpenseGroup = async (options: {
+	expenseGroupId: ExpenseGroup['id'];
+	expense: Expense;
+}) => {
+	return new AddExpenseToExpenseGroupUseCase(repository).perform(options);
 };
