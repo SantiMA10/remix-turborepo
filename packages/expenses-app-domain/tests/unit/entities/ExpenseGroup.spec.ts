@@ -14,57 +14,39 @@ describe('ExpenseGroup', () => {
 			expect(result).toMatchObject({ users: [{ balance: 0 }] });
 		});
 
-		it('returns the sum of all the expense if there is only user', async () => {
-			const user = UserBuilder.build();
-			const expense1 = ExpenseBuilder.build({ user, amount: 100 });
-			const expense2 = ExpenseBuilder.build({ user, amount: 200 });
-			const expenseGroup = ExpenseGroupBuilder.build({
-				users: [user],
-				expenses: [expense1, expense2],
+		it('calculates each balance by sum all the expenses and then subtract the expenses done by each user', async () => {
+			const user1 = UserBuilder.build({ name: 'Francisco Buyo' });
+			const user2 = UserBuilder.build({ name: 'Alfonso Pérez' });
+			const user3 = UserBuilder.build({ name: 'Raúl González' });
+			const user4 = UserBuilder.build({ name: 'José María Gutiérrez' });
+			const expenseForUser1 = ExpenseBuilder.build({
+				description: 'Cena',
+				user: user1,
+				amount: 100,
 			});
-
-			const result = calculateExpenseGroupBalance(expenseGroup);
-
-			expect(result).toMatchObject({ users: [{ balance: 300 }] });
-		});
-
-		it('returns a negative balance if the user did not pay for any expense', async () => {
-			const userPositiveBalance = UserBuilder.build();
-			const userNegativeBalance = UserBuilder.build();
-			const expense1 = ExpenseBuilder.build({ user: userPositiveBalance, amount: 100 });
-			const expense2 = ExpenseBuilder.build({ user: userPositiveBalance, amount: 200 });
-			const expenseGroup = ExpenseGroupBuilder.build({
-				users: [userPositiveBalance, userNegativeBalance],
-				expenses: [expense1, expense2],
+			const expense1ForUser2 = ExpenseBuilder.build({
+				description: 'Taxi',
+				user: user2,
+				amount: 10,
 			});
-
-			const result = calculateExpenseGroupBalance(expenseGroup);
-
-			expect(result).toMatchObject({
-				users: [
-					{ ...userPositiveBalance, balance: 300 },
-					{ ...userNegativeBalance, balance: -300 },
-				],
+			const expense2ForUser2 = ExpenseBuilder.build({
+				description: 'Compra',
+				user: user2,
+				amount: 53.4,
 			});
-		});
-
-		it('returns 0 balance if all users have paid the same', async () => {
-			const user1 = UserBuilder.build();
-			const user2 = UserBuilder.build();
-			const expense1 = ExpenseBuilder.build({ user: user1, amount: 100 });
-			const expense2 = ExpenseBuilder.build({ user: user2, amount: 50 });
-			const expense3 = ExpenseBuilder.build({ user: user2, amount: 50 });
 			const expenseGroup = ExpenseGroupBuilder.build({
-				users: [user1, user2],
-				expenses: [expense1, expense2, expense3],
+				users: [user1, user2, user3, user4],
+				expenses: [expenseForUser1, expense1ForUser2, expense2ForUser2],
 			});
 
 			const result = calculateExpenseGroupBalance(expenseGroup);
 
 			expect(result).toMatchObject({
 				users: [
-					{ ...user1, balance: 0 },
-					{ ...user2, balance: 0 },
+					{ id: user1.id, balance: 59.15 },
+					{ id: user2.id, balance: 22.55 },
+					{ id: user3.id, balance: -40.85 },
+					{ id: user4.id, balance: -40.85 },
 				],
 			});
 		});
