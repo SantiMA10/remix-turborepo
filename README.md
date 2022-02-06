@@ -42,9 +42,7 @@ yarn start // alias for yarn start:prod
 ### 🐳 with docker
 
 ```bash
-yarn install
-
-yarn start:prod
-yarn start // alias for yarn start:prod
+yarn docker:start // start the app using docker and docker-compose in http://localhost:3000
+yarn docker:stop // stop the docker app
 ```
 
