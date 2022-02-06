@@ -2,13 +2,13 @@
 
 This is a [remix](https://remix.run/) project bootstrapped with `create-remix`. This project is a monorepo managed with [turborepo](https://turborepo.org/). 
 
-# Project structure
+## Project structure
 
 - `.github/workflows` contains the configuration to lint, test and build the repo on each merge with the main branch using GitHub Actions.
-- `apps/expenses-app` contains the remix project.
+- [`apps/expenses-app`](./apps/expenses-app/README.md) contains the remix project.
 - `packages` contains different packages with each of the architecture layers
-  - `packages/expenses-app-domain` contains the business entities and rules
-  - `packages/expenses-app-data` contains the implementations for accessing "real" data
+  - [`packages/expenses-app-domain`](./packages/expenses-app-domain/README.md) contains the business entities and rules
+  - [`packages/expenses-app-data`](./packages/expenses-app-data/README.md) contains the implementations for accessing "real" data
   
 # Getting Started
 
@@ -28,5 +28,14 @@ yarn start:dev
 yarn install
 
 yarn test
+```
+
+## Production
+
+```bash
+yarn install
+
+yarn start:prod
+yarn start // alias for yarn start:prod
 ```
 
