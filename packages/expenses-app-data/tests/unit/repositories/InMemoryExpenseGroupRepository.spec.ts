@@ -44,4 +44,31 @@ describe('InMemoryExpenseGroupRepository', () => {
 			expect(result).toBeUndefined();
 		});
 	});
+
+	describe('#update', () => {
+		it('returns the updated expense group', async () => {
+			const subject = new InMemoryExpenseGroupRepository();
+
+			const result = await subject.update({ id: '1' });
+
+			expect(result).toMatchObject({ id: '1' });
+		});
+
+		it('returns undefined if the expense group does not exists in the in memory cache', async () => {
+			const subject = new InMemoryExpenseGroupRepository();
+
+			const result = await subject.update({ id: '7' });
+
+			expect(result).toBeUndefined();
+		});
+
+		it('updates the expense group in the in memory group', async () => {
+			const subject = new InMemoryExpenseGroupRepository();
+
+			await subject.update({ id: '1', name: 'The Best' });
+			const result = await subject.findById('1');
+
+			expect(result).toMatchObject({ id: '1', name: 'The Best' });
+		});
+	});
 });

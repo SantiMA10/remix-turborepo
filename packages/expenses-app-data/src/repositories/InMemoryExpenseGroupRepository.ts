@@ -1,4 +1,5 @@
 import { ExpenseGroup, ExpenseGroupRepository } from 'expenses-app-domain';
+import { merge } from 'lodash';
 
 const expenseGroups: ExpenseGroup[] = [
 	{
@@ -29,5 +30,15 @@ export class InMemoryExpenseGroupRepository implements ExpenseGroupRepository {
 
 	public findAll: ExpenseGroupRepository['findAll'] = async () => {
 		return expenseGroups;
+	};
+
+	public update: ExpenseGroupRepository['update'] = async (expenseGroupLike) => {
+		const expenseGroup = expenseGroups.find(({ id }) => expenseGroupLike.id === id);
+
+		if (!expenseGroup) {
+			return;
+		}
+
+		return merge(expenseGroup, expenseGroupLike);
 	};
 }
