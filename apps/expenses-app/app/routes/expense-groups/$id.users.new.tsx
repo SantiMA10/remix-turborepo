@@ -4,10 +4,13 @@ import {
 	Form,
 	LoaderFunction,
 	redirect,
+	useActionData,
 	useLoaderData,
 	useTransition,
 } from 'remix';
 import invariant from 'tiny-invariant';
+
+import { addUserToExpenseGroup } from '../../data/expenseGroups.server';
 
 export const loader: LoaderFunction = async ({
 	params,
@@ -19,19 +22,39 @@ export const loader: LoaderFunction = async ({
 
 export const action: ActionFunction = async ({ request }) => {
 	const formData = await request.formData();
+
+	const expenseGroupId = formData.get('expenseGroupId');
+	const name = formData.get('name');
+
+	const { error } = await addUserToExpenseGroup({
+		expenseGroupId: typeof expenseGroupId === 'string' ? expenseGroupId : '',
+		name: typeof name === 'string' ? name : '',
+	});
+
+	if (error) {
+		const values = Object.fromEntries(formData);
+		return { error, values };
+	}
+
 	return redirect(`/expense-groups/${formData.get('expenseGroupId')}`);
 };
 
 export default function NewUser() {
 	const { expenseGroupId } = useLoaderData();
 	const transition = useTransition();
+	const actionData = useActionData();
 
 	return (
 		<Form method="post">
 			<fieldset disabled={transition.state === 'submitting'}>
 				<input type="hidden" name="expenseGroupId" defaultValue={expenseGroupId} />
 
-				<h1>New User</h1>
+				<h1>Añadir persona al grupo:</h1>
+
+				{actionData?.error && <p>{actionData.error.message}</p>}
+
+				<label htmlFor="name">Nombre</label>
+				<input type="text" name="name" id="name" required defaultValue={actionData?.values?.name} />
 
 				<p>
 					<button type="submit">
