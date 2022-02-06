@@ -2,6 +2,7 @@ import { ExpenseGroup, User } from 'expenses-app-domain';
 import {
 	ActionFunction,
 	Form,
+	Link,
 	LoaderFunction,
 	redirect,
 	useActionData,
@@ -11,6 +12,7 @@ import {
 import invariant from 'tiny-invariant';
 
 import { FormInputGroup } from '../../components/FormInputGroup';
+import { Header } from '../../components/Header';
 import { addExpenseToExpenseGroup, getExpenseGroup } from '../../data/expenseGroups.server';
 
 interface LoaderData {
@@ -67,60 +69,66 @@ export default function NewExpense() {
 	const actionData = useActionData();
 
 	return (
-		<Form method="post">
-			<fieldset disabled={transition.state === 'submitting'}>
-				<input type="hidden" name="expenseGroupId" defaultValue={expenseGroupId} />
+		<>
+			<Header>
+				<Link to={`/expense-groups/${expenseGroupId}`}>Volver</Link>
+			</Header>
 
-				<h1>Añadir gasto al grupo:</h1>
+			<Form method="post">
+				<fieldset disabled={transition.state === 'submitting'}>
+					<input type="hidden" name="expenseGroupId" defaultValue={expenseGroupId} />
 
-				{actionData?.error && <p>{actionData.error.message}</p>}
+					<h2>Añadir gasto al grupo:</h2>
 
-				<FormInputGroup label="Descripción" inputId="description">
-					<input
-						type="text"
-						name="description"
-						id="description"
-						required
-						defaultValue={actionData?.values?.description}
-					/>
-				</FormInputGroup>
+					{actionData?.error && <p>{actionData.error.message}</p>}
 
-				<FormInputGroup label="Cantidad" inputId="amount">
-					<input
-						type="number"
-						name="amount"
-						id="amount"
-						required
-						defaultValue={actionData?.values?.amount}
-					/>
-				</FormInputGroup>
+					<FormInputGroup label="Descripción" inputId="description">
+						<input
+							type="text"
+							name="description"
+							id="description"
+							required
+							defaultValue={actionData?.values?.description}
+						/>
+					</FormInputGroup>
 
-				<FormInputGroup label="Fecha" inputId="date">
-					<input
-						type="date"
-						name="date"
-						id="date"
-						required
-						defaultValue={actionData?.values?.date}
-					/>
-				</FormInputGroup>
+					<FormInputGroup label="Cantidad" inputId="amount">
+						<input
+							type="number"
+							name="amount"
+							id="amount"
+							required
+							defaultValue={actionData?.values?.amount}
+						/>
+					</FormInputGroup>
 
-				<FormInputGroup label="Persona" inputId="userId">
-					<select name="userId" id="userId">
-						{users.map(({ id, name }) => (
-							<option key={id} value={id}>
-								{name}
-							</option>
-						))}
-					</select>
-				</FormInputGroup>
+					<FormInputGroup label="Fecha" inputId="date">
+						<input
+							type="date"
+							name="date"
+							id="date"
+							required
+							defaultValue={actionData?.values?.date}
+						/>
+					</FormInputGroup>
 
-				<p>
-					<button type="submit">
-						{transition.state === 'submitting' ? 'Añadiendo gasto...' : 'Añadir gasto'}
-					</button>
-				</p>
-			</fieldset>
-		</Form>
+					<FormInputGroup label="Persona" inputId="userId">
+						<select name="userId" id="userId">
+							{users.map(({ id, name }) => (
+								<option key={id} value={id}>
+									{name}
+								</option>
+							))}
+						</select>
+					</FormInputGroup>
+
+					<p>
+						<button type="submit">
+							{transition.state === 'submitting' ? 'Añadiendo gasto...' : 'Añadir gasto'}
+						</button>
+					</p>
+				</fieldset>
+			</Form>
+		</>
 	);
 }

@@ -3,6 +3,7 @@ import { MetaFunction, useLoaderData } from 'remix';
 import invariant from 'tiny-invariant';
 
 import { ExpenseGroupList } from '../components/ExpenseGroupList';
+import { Header } from '../components/Header';
 import { getExpenseGroups } from '../data/expenseGroups.server';
 
 export async function loader(): Promise<ExpenseGroup[]> {
@@ -26,7 +27,7 @@ export default function Index() {
 
 	return (
 		<div>
-			<h1>Balbal cash | Comparte gastos como en Blabla car</h1>
+			<Header />
 
 			<ExpenseGroupList expenseGroups={expenseGroups} />
 		</div>

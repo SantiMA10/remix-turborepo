@@ -2,6 +2,7 @@ import { ExpenseGroup } from 'expenses-app-domain';
 import {
 	ActionFunction,
 	Form,
+	Link,
 	LoaderFunction,
 	redirect,
 	useActionData,
@@ -11,6 +12,7 @@ import {
 import invariant from 'tiny-invariant';
 
 import { FormInputGroup } from '../../components/FormInputGroup';
+import { Header } from '../../components/Header';
 import { addUserToExpenseGroup } from '../../data/expenseGroups.server';
 
 export const loader: LoaderFunction = async ({
@@ -46,30 +48,36 @@ export default function NewUser() {
 	const actionData = useActionData();
 
 	return (
-		<Form method="post">
-			<fieldset disabled={transition.state === 'submitting'}>
-				<input type="hidden" name="expenseGroupId" defaultValue={expenseGroupId} />
+		<>
+			<Header>
+				<Link to={`/expense-groups/${expenseGroupId}`}>Volver</Link>
+			</Header>
 
-				<h1>Añadir persona al grupo:</h1>
+			<Form method="post">
+				<fieldset disabled={transition.state === 'submitting'}>
+					<input type="hidden" name="expenseGroupId" defaultValue={expenseGroupId} />
 
-				{actionData?.error && <p>{actionData.error.message}</p>}
+					<h2>Añadir persona al grupo:</h2>
 
-				<FormInputGroup label="Nombre" inputId="name">
-					<input
-						type="text"
-						name="name"
-						id="name"
-						required
-						defaultValue={actionData?.values?.name}
-					/>
-				</FormInputGroup>
+					{actionData?.error && <p>{actionData.error.message}</p>}
 
-				<p>
-					<button type="submit">
-						{transition.state === 'submitting' ? 'Añadiendo...' : 'Añadir'}
-					</button>
-				</p>
-			</fieldset>
-		</Form>
+					<FormInputGroup label="Nombre" inputId="name">
+						<input
+							type="text"
+							name="name"
+							id="name"
+							required
+							defaultValue={actionData?.values?.name}
+						/>
+					</FormInputGroup>
+
+					<p>
+						<button type="submit">
+							{transition.state === 'submitting' ? 'Añadiendo...' : 'Añadir'}
+						</button>
+					</p>
+				</fieldset>
+			</Form>
+		</>
 	);
 }

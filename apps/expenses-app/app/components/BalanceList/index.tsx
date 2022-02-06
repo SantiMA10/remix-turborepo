@@ -9,7 +9,7 @@ export const BalanceList: React.FC<Props> = ({ users }: Props) => {
 
 	return (
 		<>
-			<h2>Balance:</h2>
+			<h3>Balance:</h3>
 			<List>
 				{users.map((user) => {
 					return <BalanceCard key={user.id} user={user} />;

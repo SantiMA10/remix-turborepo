@@ -9,7 +9,7 @@ export const ExpenseList: React.FC<Props> = ({ expenses }: Props) => {
 
 	return (
 		<>
-			<h2>Gastos:</h2>
+			<h3>Gastos:</h3>
 			<List>
 				{expenses.map((expense) => {
 					return <ExpenseCard key={expense.id} expense={expense} />;
