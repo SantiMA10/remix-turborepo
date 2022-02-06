@@ -12,7 +12,9 @@
 		"build": "turbo run build",
 		"start:dev": "turbo run dev",
 		"start:prod": "turbo run start",
-		"start": "yarn start:prod"
+		"start": "yarn start:prod",
+		"docker:start": "docker-compose up -d --build",
+		"docker:stop": "docker-compose down"
 	},
 	"devDependencies": {
 		"turbo": "^1.1.2",

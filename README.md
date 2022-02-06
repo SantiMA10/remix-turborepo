@@ -12,7 +12,7 @@ This is a [remix](https://remix.run/) project bootstrapped with `create-remix`. 
   
 # Getting Started
 
-## Development
+## 💻 Development
 
 First, run the development server:
 
@@ -22,7 +22,7 @@ yarn install
 yarn start:dev
 ```
 
-## Testing
+## 🧪 Testing
 
 ```bash
 yarn install
@@ -30,7 +30,16 @@ yarn install
 yarn test
 ```
 
-## Production
+## ⚠️ Production
+
+```bash
+yarn install
+
+yarn start:prod
+yarn start // alias for yarn start:prod
+```
+
+### 🐳 with docker
 
 ```bash
 yarn install
