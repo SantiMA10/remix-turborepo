@@ -9,17 +9,17 @@ const expenseGroups: ExpenseGroup[] = [
 		expenses: [
 			{
 				id: '1',
-				date: DateTime.now().minus({ days: 1 }).toJSDate(),
-				amount: 9,
-				description: '💿 Music Remix',
-				user: { id: '1', name: 'Marisol' },
-			},
-			{
-				id: '2',
 				date: new Date(),
 				amount: 9,
 				description: '☕️ Coffee',
 				user: { id: '2', name: 'Juan' },
+			},
+			{
+				id: '2',
+				date: DateTime.now().minus({ days: 1 }).toJSDate(),
+				amount: 9,
+				description: '💿 Music Remix',
+				user: { id: '1', name: 'Marisol' },
 			},
 		],
 		users: [

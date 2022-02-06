@@ -22,7 +22,7 @@ describe('InMemoryExpenseGroupRepository', () => {
 				name: 'Group 1',
 				expenses: [
 					{
-						id: '2',
+						id: '1',
 						amount: 9,
 						date: expect.any(Date),
 						description: '☕️ Coffee',
@@ -32,7 +32,7 @@ describe('InMemoryExpenseGroupRepository', () => {
 						},
 					},
 					{
-						id: '1',
+						id: '2',
 						date: expect.any(Date),
 						amount: 9,
 						description: '💿 Music Remix',
