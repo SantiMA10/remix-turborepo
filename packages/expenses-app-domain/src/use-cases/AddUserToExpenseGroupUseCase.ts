@@ -4,12 +4,12 @@ import { ExpenseGroup, ExpenseGroupRepository, User } from '..';
 import { ErrorType } from '../utils/ErrorType';
 import { BaseUseCase } from '.';
 
-type UseCase = BaseUseCase<{ expenseGroupId: ExpenseGroup['id']; name: User['name'] }>;
+type UseCase = BaseUseCase<{ expenseGroupId: ExpenseGroup['id']; user: Omit<User, 'id'> }>;
 
 export class AddUserToExpenseGroupUseCase implements UseCase {
 	public constructor(private readonly repository: ExpenseGroupRepository) {}
 
-	public perform: UseCase['perform'] = async ({ expenseGroupId, name }) => {
+	public perform: UseCase['perform'] = async ({ expenseGroupId, user }) => {
 		const expenseGroup = await this.repository.findById(expenseGroupId);
 
 		if (!expenseGroup) {
@@ -23,7 +23,7 @@ export class AddUserToExpenseGroupUseCase implements UseCase {
 
 		this.repository.update({
 			...expenseGroup,
-			users: [...expenseGroup.users, { id: randomUUID(), name }],
+			users: [...expenseGroup.users, { ...user, id: randomUUID() }],
 		});
 
 		return {};

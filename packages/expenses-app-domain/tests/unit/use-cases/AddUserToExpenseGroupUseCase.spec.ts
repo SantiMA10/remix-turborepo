@@ -11,7 +11,7 @@ describe('AddUserToExpenseGroupUseCase', () => {
 			jest.spyOn(repository, 'findById').mockImplementation(() => Promise.resolve(undefined));
 			const subject = new AddUserToExpenseGroupUseCase(repository);
 
-			const result = await subject.perform({ expenseGroupId: 'id', name: 'name' });
+			const result = await subject.perform({ expenseGroupId: 'id', user: { name: 'name' } });
 
 			expect(result).toMatchObject({
 				error: { type: ErrorType.EntityNotFound, message: 'ExpenseGroup (id) not found' },
@@ -28,7 +28,7 @@ describe('AddUserToExpenseGroupUseCase', () => {
 				.mockImplementation((group) => Promise.resolve(ExpenseGroupBuilder.build(group)));
 			const subject = new AddUserToExpenseGroupUseCase(repository);
 
-			await subject.perform({ expenseGroupId: 'id', name: 'name' });
+			await subject.perform({ expenseGroupId: 'id', user: { name: 'name' } });
 
 			expect(spyUpdate).toHaveBeenCalledWith({
 				...expenseGroup,

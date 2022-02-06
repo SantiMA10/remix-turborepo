@@ -106,7 +106,7 @@ export default function NewExpense() {
 
 				<p>
 					<button type="submit">
-						{transition.state === 'submitting' ? 'Creating...' : 'Create'}
+						{transition.state === 'submitting' ? 'Añadiendo gasto...' : 'Añadir gasto'}
 					</button>
 				</p>
 			</fieldset>

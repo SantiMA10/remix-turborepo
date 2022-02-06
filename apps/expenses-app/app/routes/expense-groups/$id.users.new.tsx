@@ -28,7 +28,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 	const { error } = await addUserToExpenseGroup({
 		expenseGroupId: typeof expenseGroupId === 'string' ? expenseGroupId : '',
-		name: typeof name === 'string' ? name : '',
+		user: { name: typeof name === 'string' ? name : '' },
 	});
 
 	if (error) {
@@ -58,7 +58,7 @@ export default function NewUser() {
 
 				<p>
 					<button type="submit">
-						{transition.state === 'submitting' ? 'Creating...' : 'Create'}
+						{transition.state === 'submitting' ? 'Añadiendo...' : 'Añadir'}
 					</button>
 				</p>
 			</fieldset>
