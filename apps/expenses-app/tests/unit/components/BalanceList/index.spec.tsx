@@ -48,4 +48,14 @@ describe('BalanceList', () => {
 
 		expect(await findByTestId(/negative-balance/i)).toBeInTheDocument();
 	});
+
+	it('does not apply any style if the balance is 0', async () => {
+		const { findByText } = render(
+			<BalanceList users={[{ id: '1', name: 'Marisol', balance: 0 }]} />,
+		);
+
+		const balance = await findByText(/0 €/i);
+		expect(balance).not.toHaveAttribute('data-testid', 'positive-balance');
+		expect(balance).not.toHaveAttribute('data-testid', 'negative-balance');
+	});
 });
