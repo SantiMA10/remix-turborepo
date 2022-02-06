@@ -28,7 +28,7 @@ export const addUserToExpenseGroup = async (options: {
 
 export const addExpenseToExpenseGroup = async (options: {
 	expenseGroupId: ExpenseGroup['id'];
-	expense: Expense;
+	expense: Omit<Expense, 'id' | 'user'> & { user: { id: User['id'] } };
 }) => {
 	return new AddExpenseToExpenseGroupUseCase(repository).perform(options);
 };

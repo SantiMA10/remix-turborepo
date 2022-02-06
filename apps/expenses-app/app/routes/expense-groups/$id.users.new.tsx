@@ -36,7 +36,7 @@ export const action: ActionFunction = async ({ request }) => {
 		return { error, values };
 	}
 
-	return redirect(`/expense-groups/${formData.get('expenseGroupId')}`);
+	return redirect(`/expense-groups/${expenseGroupId}`);
 };
 
 export default function NewUser() {

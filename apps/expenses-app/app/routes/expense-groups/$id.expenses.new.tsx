@@ -31,7 +31,7 @@ export const loader: LoaderFunction = async ({ params }): Promise<LoaderData> =>
 	return { expenseGroupId: params.id, users: data.users };
 };
 
-export const action: ActionFunction = async ({ request, context }) => {
+export const action: ActionFunction = async ({ request }) => {
 	const formData = await request.formData();
 
 	const expenseGroupId = formData.get('expenseGroupId');
@@ -57,7 +57,7 @@ export const action: ActionFunction = async ({ request, context }) => {
 		return { error, values };
 	}
 
-	return redirect(`/expense-groups/${formData.get('expenseGroupId')}`);
+	return redirect(`/expense-groups/${expenseGroupId}`);
 };
 
 export default function NewExpense() {
