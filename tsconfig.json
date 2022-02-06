@@ -1,0 +1,11 @@
+{
+	"exclude": ["packages/**/tests/**"],
+	"references": [
+		{
+			"path": "./packages/expenses-app-data"
+		},
+		{
+			"path": "./packages/expenses-app-domain"
+		}
+	]
+}
