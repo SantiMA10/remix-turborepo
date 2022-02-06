@@ -10,6 +10,7 @@ import {
 } from 'remix';
 import invariant from 'tiny-invariant';
 
+import { FormInputGroup } from '../../components/FormInputGroup';
 import { addUserToExpenseGroup } from '../../data/expenseGroups.server';
 
 export const loader: LoaderFunction = async ({
@@ -53,8 +54,15 @@ export default function NewUser() {
 
 				{actionData?.error && <p>{actionData.error.message}</p>}
 
-				<label htmlFor="name">Nombre</label>
-				<input type="text" name="name" id="name" required defaultValue={actionData?.values?.name} />
+				<FormInputGroup label="Nombre" inputId="name">
+					<input
+						type="text"
+						name="name"
+						id="name"
+						required
+						defaultValue={actionData?.values?.name}
+					/>
+				</FormInputGroup>
 
 				<p>
 					<button type="submit">

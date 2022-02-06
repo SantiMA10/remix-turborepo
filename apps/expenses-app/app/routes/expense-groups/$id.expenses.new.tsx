@@ -10,6 +10,7 @@ import {
 } from 'remix';
 import invariant from 'tiny-invariant';
 
+import { FormInputGroup } from '../../components/FormInputGroup';
 import { addExpenseToExpenseGroup, getExpenseGroup } from '../../data/expenseGroups.server';
 
 interface LoaderData {
@@ -74,35 +75,45 @@ export default function NewExpense() {
 
 				{actionData?.error && <p>{actionData.error.message}</p>}
 
-				<label htmlFor="description">Description</label>
-				<input
-					type="text"
-					name="description"
-					id="description"
-					required
-					defaultValue={actionData?.values?.description}
-				/>
+				<FormInputGroup label="Descripción" inputId="description">
+					<input
+						type="text"
+						name="description"
+						id="description"
+						required
+						defaultValue={actionData?.values?.description}
+					/>
+				</FormInputGroup>
 
-				<label htmlFor="amount">Cantidad</label>
-				<input
-					type="number"
-					name="amount"
-					id="amount"
-					required
-					defaultValue={actionData?.values?.amount}
-				/>
+				<FormInputGroup label="Cantidad" inputId="amount">
+					<input
+						type="number"
+						name="amount"
+						id="amount"
+						required
+						defaultValue={actionData?.values?.amount}
+					/>
+				</FormInputGroup>
 
-				<label htmlFor="date">Fecha</label>
-				<input type="date" name="date" id="date" required defaultValue={actionData?.values?.date} />
+				<FormInputGroup label="Fecha" inputId="date">
+					<input
+						type="date"
+						name="date"
+						id="date"
+						required
+						defaultValue={actionData?.values?.date}
+					/>
+				</FormInputGroup>
 
-				<label htmlFor="description">Persona</label>
-				<select name="userId" id="userId">
-					{users.map(({ id, name }) => (
-						<option key={id} value={id}>
-							{name}
-						</option>
-					))}
-				</select>
+				<FormInputGroup label="Persona" inputId="userId">
+					<select name="userId" id="userId">
+						{users.map(({ id, name }) => (
+							<option key={id} value={id}>
+								{name}
+							</option>
+						))}
+					</select>
+				</FormInputGroup>
 
 				<p>
 					<button type="submit">
